@@ -8,7 +8,7 @@ interface SuccessScreenProps {
 
 export const SuccessScreen: React.FC<SuccessScreenProps> = ({ email, onLogout }) => {
   return (
-    <div className="bg-slate-900 p-10 rounded-2xl shadow-2xl border border-slate-800 text-center animate-in fade-in zoom-in duration-500">
+    <div className="bg-rose-950/40 backdrop-blur-xl p-10 rounded-2xl shadow-2xl border border-rose-800/30 text-center animate-in fade-in zoom-in duration-500">
       <div className="mb-6 relative inline-block">
         <div className="absolute inset-0 bg-green-500/20 rounded-full scale-150 animate-ping"></div>
         <div className="relative flex items-center justify-center w-24 h-24 bg-green-900/40 text-green-400 rounded-full mx-auto border-2 border-green-500/30">
@@ -19,20 +19,20 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ email, onLogout })
       </div>
 
       <h2 className="text-3xl font-extrabold text-white mb-2 tracking-tight">Autenticado com Sucesso!</h2>
-      <p className="text-slate-400 text-lg mb-8">
-        Olá, <span className="text-indigo-400 font-bold">{email}</span>. Você entrou com segurança no seu portal.
+      <p className="text-rose-300/70 text-lg mb-8">
+        Olá, <span className="text-pink-400 font-bold">{email}</span>. Você entrou com segurança no seu portal.
       </p>
 
-      <div className="bg-indigo-950/30 border border-indigo-900/50 rounded-2xl p-6 mb-8 text-left backdrop-blur-sm">
+      <div className="bg-pink-950/30 border border-pink-900/50 rounded-2xl p-6 mb-8 text-left backdrop-blur-sm">
         <div className="flex items-start">
           <div className="flex-shrink-0 mt-1">
-            <svg className="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="h-5 w-5 text-pink-400" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
             </svg>
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-bold text-indigo-300">Sessão Ativa</h3>
-            <p className="mt-1 text-sm text-indigo-400/80 leading-relaxed">
+            <h3 className="text-sm font-bold text-pink-300">Sessão Ativa</h3>
+            <p className="mt-1 text-sm text-pink-400/80 leading-relaxed">
               Sua sessão expirará automaticamente em 24 horas por motivos de segurança e privacidade dos seus dados.
             </p>
           </div>
@@ -41,7 +41,7 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ email, onLogout })
 
       <button
         onClick={onLogout}
-        className="w-full sm:w-auto px-10 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+        className="w-full sm:w-auto px-10 py-4 bg-white text-rose-950 rounded-xl font-bold hover:bg-rose-50 transition-all shadow-xl active:scale-95"
       >
         Encerrar Sessão
       </button>

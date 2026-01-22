@@ -35,9 +35,9 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-900 p-8 rounded-2xl shadow-2xl border border-slate-800 transform transition-all duration-300">
+    <div className="bg-rose-950/40 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-rose-800/30 transform transition-all duration-300">
       <div className="mb-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-900/40 text-indigo-400 rounded-full mb-4 shadow-inner">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-900/40 text-pink-400 rounded-full mb-4 shadow-inner">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
@@ -45,7 +45,7 @@ export const LoginForm: React.FC = () => {
         <h2 className="text-2xl font-bold text-white">
           {isSignUp ? 'Criar nova conta' : 'Bem-vindo de volta'}
         </h2>
-        <p className="text-slate-400 mt-2 text-sm">
+        <p className="text-rose-300/60 mt-2 text-sm">
           {isSignUp ? 'Preencha os dados abaixo' : 'Entre com sua conta para continuar'}
         </p>
       </div>
@@ -58,7 +58,7 @@ export const LoginForm: React.FC = () => {
         )}
 
         <div className="space-y-2">
-          <label className="block text-xs uppercase tracking-wider font-semibold text-slate-500 ml-1" htmlFor="email">
+          <label className="block text-xs uppercase tracking-wider font-semibold text-rose-400/70 ml-1" htmlFor="email">
             E-mail
           </label>
           <input
@@ -66,14 +66,14 @@ export const LoginForm: React.FC = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-rose-950/60 border border-rose-800/50 text-white placeholder-rose-700 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none"
             placeholder="seu@email.com"
             autoComplete="email"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="block text-xs uppercase tracking-wider font-semibold text-slate-500 ml-1" htmlFor="password">
+          <label className="block text-xs uppercase tracking-wider font-semibold text-rose-400/70 ml-1" htmlFor="password">
             Senha
           </label>
           <input
@@ -81,7 +81,7 @@ export const LoginForm: React.FC = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-rose-950/60 border border-rose-800/50 text-white placeholder-rose-700 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none"
             placeholder="••••••••"
             autoComplete={isSignUp ? "new-password" : "current-password"}
           />
@@ -91,8 +91,8 @@ export const LoginForm: React.FC = () => {
           type="submit"
           disabled={isLoading}
           className={`w-full py-4 rounded-xl font-bold text-white transition-all transform active:scale-[0.98] ${isLoading
-              ? 'bg-indigo-900/40 cursor-not-allowed opacity-50'
-              : 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 shadow-lg shadow-indigo-900/20'
+            ? 'bg-rose-900/40 cursor-not-allowed opacity-50'
+            : 'bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 shadow-lg shadow-pink-900/40'
             }`}
         >
           {isLoading ? (
@@ -109,13 +109,13 @@ export const LoginForm: React.FC = () => {
         </button>
       </form>
 
-      <div className="mt-8 pt-6 border-t border-slate-800 text-center text-sm">
-        <p className="text-slate-500 italic">
+      <div className="mt-8 pt-6 border-t border-rose-800/30 text-center text-sm">
+        <p className="text-rose-400/60 italic">
           {isSignUp ? 'Já possui uma conta?' : 'Ainda não tem acesso?'}
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
-            className="ml-2 text-indigo-400 font-bold hover:text-indigo-300 transition-colors focus:outline-none not-italic"
+            className="ml-2 text-pink-400 font-bold hover:text-pink-300 transition-colors focus:outline-none not-italic"
           >
             {isSignUp ? 'Fazer Login' : 'Criar Conta Grátis'}
           </button>
