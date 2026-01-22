@@ -1,27 +1,47 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoginForm } from './components/LoginForm';
 import { SuccessScreen } from './components/SuccessScreen';
+import { supabase } from './lib/supabase';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [userEmail, setUserEmail] = useState<string>('');
+  const [loading, setLoading] = useState(true);
 
-  const handleLogin = (email: string) => {
-    setUserEmail(email);
-    setIsAuthenticated(true);
+  useEffect(() => {
+    // Check active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session);
+      setUserEmail(session?.user?.email || '');
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+      setUserEmail(session?.user?.email || '');
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUserEmail('');
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-950">
+        <div className="animate-spin h-8 w-8 border-4 border-indigo-500 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4 transition-colors duration-500">
       <div className="w-full max-w-md">
         {!isAuthenticated ? (
-          <LoginForm onLogin={handleLogin} />
+          <LoginForm />
         ) : (
           <SuccessScreen email={userEmail} onLogout={handleLogout} />
         )}
@@ -31,3 +51,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

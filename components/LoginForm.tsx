@@ -1,15 +1,12 @@
-
 import React, { useState } from 'react';
+import { supabase } from '../lib/supabase';
 
-interface LoginFormProps {
-  onLogin: (email: string) => void;
-}
-
-export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+export const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,11 +19,19 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
     setIsLoading(true);
 
-    // Simulando uma requisição de API
-    setTimeout(() => {
+    try {
+      const { error: authError } = isSignUp
+        ? await supabase.auth.signUp({ email, password })
+        : await supabase.auth.signInWithPassword({ email, password });
+
+      if (authError) {
+        setError(authError.message);
+      }
+    } catch (err: any) {
+      setError('Ocorreu um erro inesperado. Tente novamente.');
+    } finally {
       setIsLoading(false);
-      onLogin(email);
-    }, 1500);
+    }
   };
 
   return (
@@ -37,13 +42,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white">Bem-vindo de volta</h2>
-        <p className="text-slate-400 mt-2 text-sm">Entre com sua conta para continuar</p>
+        <h2 className="text-2xl font-bold text-white">
+          {isSignUp ? 'Criar nova conta' : 'Bem-vindo de volta'}
+        </h2>
+        <p className="text-slate-400 mt-2 text-sm">
+          {isSignUp ? 'Preencha os dados abaixo' : 'Entre com sua conta para continuar'}
+        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {error && (
-          <div className="bg-red-900/30 text-red-400 p-3 rounded-lg text-sm border border-red-900/50 animate-pulse">
+          <div className="bg-red-900/30 text-red-400 p-3 rounded-lg text-sm border border-red-900/50 animate-pulse font-medium text-center">
             {error}
           </div>
         )}
@@ -59,6 +68,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
             placeholder="seu@email.com"
+            autoComplete="email"
           />
         </div>
 
@@ -73,6 +83,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
             placeholder="••••••••"
+            autoComplete={isSignUp ? "new-password" : "current-password"}
           />
         </div>
 
@@ -90,20 +101,26 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Verificando...
+              Processando...
             </div>
           ) : (
-            'Acessar Portal'
+            isSignUp ? 'Cadastrar Agora' : 'Acessar Portal'
           )}
         </button>
       </form>
 
       <div className="mt-8 pt-6 border-t border-slate-800 text-center text-sm">
-        <p className="text-slate-500">
-          Não tem uma conta? <a href="#" className="text-indigo-400 font-medium hover:text-indigo-300 hover:underline transition-colors">Criar agora</a>
+        <p className="text-slate-500 italic">
+          {isSignUp ? 'Já possui uma conta?' : 'Ainda não tem acesso?'}
+          <button
+            type="button"
+            onClick={() => setIsSignUp(!isSignUp)}
+            className="ml-2 text-indigo-400 font-bold hover:text-indigo-300 transition-colors focus:outline-none not-italic"
+          >
+            {isSignUp ? 'Fazer Login' : 'Criar Conta Grátis'}
+          </button>
         </p>
       </div>
     </div>
-
   );
 };
