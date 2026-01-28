@@ -35,22 +35,22 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-rose-950/40 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-rose-800/30 transform transition-all duration-300">
-      <div className="mb-8 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-900/40 text-pink-400 rounded-full mb-4 shadow-inner">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="bg-amber-950/20 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-yellow-800/20 transform transition-all duration-300">
+      <div className="mb-6 text-center">
+        <div className="inline-flex items-center justify-center w-12 h-12 bg-yellow-900/40 text-yellow-400 rounded-full mb-3 shadow-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-xl font-bold text-white">
           {isSignUp ? 'Criar nova conta' : 'Bem-vindo de volta'}
         </h2>
-        <p className="text-rose-300/60 mt-2 text-sm">
+        <p className="text-amber-300/60 mt-1 text-xs">
           {isSignUp ? 'Preencha os dados abaixo' : 'Entre com sua conta para continuar'}
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
           <div className="bg-red-900/30 text-red-400 p-3 rounded-lg text-sm border border-red-900/50 animate-pulse font-medium text-center">
             {error}
@@ -58,7 +58,7 @@ export const LoginForm: React.FC = () => {
         )}
 
         <div className="space-y-2">
-          <label className="block text-xs uppercase tracking-wider font-semibold text-rose-400/70 ml-1" htmlFor="email">
+          <label className="block text-xs uppercase tracking-wider font-semibold text-amber-500/70 ml-1" htmlFor="email">
             E-mail
           </label>
           <input
@@ -66,14 +66,14 @@ export const LoginForm: React.FC = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-rose-950/60 border border-rose-800/50 text-white placeholder-rose-700 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none"
+            className="w-full px-4 py-2.5 rounded-xl bg-amber-950/40 border border-yellow-800/40 text-white placeholder-amber-900/60 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all outline-none"
             placeholder="seu@email.com"
             autoComplete="email"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="block text-xs uppercase tracking-wider font-semibold text-rose-400/70 ml-1" htmlFor="password">
+          <label className="block text-xs uppercase tracking-wider font-semibold text-amber-500/70 ml-1" htmlFor="password">
             Senha
           </label>
           <input
@@ -81,7 +81,7 @@ export const LoginForm: React.FC = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-rose-950/60 border border-rose-800/50 text-white placeholder-rose-700 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none"
+            className="w-full px-4 py-2.5 rounded-xl bg-amber-950/40 border border-yellow-800/40 text-white placeholder-amber-900/60 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all outline-none"
             placeholder="••••••••"
             autoComplete={isSignUp ? "new-password" : "current-password"}
           />
@@ -90,9 +90,9 @@ export const LoginForm: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full py-4 rounded-xl font-bold text-white transition-all transform active:scale-[0.98] ${isLoading
-            ? 'bg-rose-900/40 cursor-not-allowed opacity-50'
-            : 'bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 shadow-lg shadow-pink-900/40'
+          className={`w-full py-3 rounded-xl font-bold text-black transition-all transform active:scale-[0.98] ${isLoading
+            ? 'bg-amber-900/40 cursor-not-allowed opacity-50'
+            : 'bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 shadow-lg shadow-yellow-900/20'
             }`}
         >
           {isLoading ? (
@@ -109,13 +109,13 @@ export const LoginForm: React.FC = () => {
         </button>
       </form>
 
-      <div className="mt-8 pt-6 border-t border-rose-800/30 text-center text-sm">
-        <p className="text-rose-400/60 italic">
+      <div className="mt-6 pt-4 border-t border-yellow-800/20 text-center text-sm">
+        <p className="text-amber-500/60 italic">
           {isSignUp ? 'Já possui uma conta?' : 'Ainda não tem acesso?'}
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
-            className="ml-2 text-pink-400 font-bold hover:text-pink-300 transition-colors focus:outline-none not-italic"
+            className="ml-2 text-yellow-500 font-bold hover:text-yellow-400 transition-colors focus:outline-none not-italic"
           >
             {isSignUp ? 'Fazer Login' : 'Criar Conta Grátis'}
           </button>

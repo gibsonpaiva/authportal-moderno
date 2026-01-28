@@ -31,14 +31,14 @@ const App: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-rose-950">
-        <div className="animate-spin h-8 w-8 border-4 border-rose-500 border-t-transparent rounded-full"></div>
+      <div className="min-h-screen flex items-center justify-center bg-amber-950">
+        <div className="animate-spin h-8 w-8 border-4 border-amber-500 border-t-transparent rounded-full"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-rose-950 p-4 transition-colors duration-500">
+    <div className="min-h-screen flex items-center justify-center bg-[#0d0b01] p-2 transition-colors duration-500">
       <div className="w-full max-w-md">
         {!isAuthenticated ? (
           <LoginForm />
