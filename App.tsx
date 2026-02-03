@@ -38,8 +38,8 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-transparent p-2 transition-colors duration-500">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-transparent p-4 sm:p-6 lg:p-8 transition-colors duration-500">
+      <div className="w-full max-w-6xl">
         {!isAuthenticated ? (
           <LoginForm />
         ) : (
